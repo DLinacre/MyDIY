@@ -485,6 +485,28 @@
         };
       }, [calc]);
 
+      /* ---- Copy text with a legacy fallback (non-HTTPS / older browsers) ---- */
+      const copyText = useCallback(async (text) => {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch (_) { /* fall through to legacy path */ }
+        try {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.top = "-1000px";
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          return ok;
+        } catch (_) { return false; }
+      }, []);
+
       /* ---- Copy measurements as plain text ---- */
       const handleCopy = useCallback(() => {
         const p = buildPayload();
@@ -501,13 +523,10 @@
           `Generated: ${p.generatedAt}`,
         ].join("\n");
 
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(lines).then(() => {
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          });
-        }
-      }, [buildPayload]);
+        copyText(lines).then((ok) => {
+          if (ok) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
+        });
+      }, [buildPayload, copyText]);
 
       /* ---- Trigger a client-side file download ---- */
       const downloadBlob = useCallback((content, filename, type) => {
