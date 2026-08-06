@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- ============================================================
+       SEO: Primary Meta Tags
+  ============================================================ -->
+  <title>Folding Stool Calculator & Builder Guide | Linacre.site</title>
+  <meta name="title" content="Folding Stool Calculator & Builder Guide | Linacre.site" />
+  <meta name="description" content="A premium DIY woodworking calculator that generates every measurement needed to build a folding camp stool from a single leg length. Includes cutting list, build guide, SVG diagrams and print/export tools." />
+  <meta name="keywords" content="folding stool calculator, camp stool plans, DIY woodworking, folding stool measurements, woodworking builder guide, cutting list" />
+  <meta name="author" content="Linacre.site" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <!-- Mobile / viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#09090b" />
+
+  <!-- Favicon (inline SVG, no extra request) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%2309090b'/%3E%3Cline%20x1='8'%20y1='26'%20x2='20'%20y2='6'%20stroke='%2310b981'%20stroke-width='2.5'%20stroke-linecap='round'/%3E%3Cline%20x1='24'%20y1='26'%20x2='12'%20y2='6'%20stroke='%2310b981'%20stroke-width='2.5'%20stroke-linecap='round'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='2'%20fill='%2322d3ee'/%3E%3Crect%20x='10'%20y='3'%20width='12'%20height='3.5'%20rx='1'%20fill='%233b82f6'/%3E%3C/svg%3E" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://linacre.site/folding-stool-calculator" />
+
+  <!-- ============================================================
+       SEO: Open Graph
+  ============================================================ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://linacre.site/folding-stool-calculator" />
+  <meta property="og:title" content="Folding Stool Calculator & Builder Guide" />
+  <meta property="og:description" content="Generate every measurement for a DIY folding camp stool from one leg length. Premium woodworking calculator with cutting list, build guide and printable reference." />
+  <meta property="og:site_name" content="Linacre.site" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- ============================================================
+       SEO: Twitter Card
+  ============================================================ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Folding Stool Calculator & Builder Guide" />
+  <meta name="twitter:description" content="Generate every measurement for a DIY folding camp stool from one leg length. Cutting list, build guide, SVG diagrams and print/export tools." />
+
+  <!-- ============================================================
+       Structured data (JSON-LD) - WebApplication
+  ============================================================ -->
+  <!--
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Folding Stool Calculator & Builder Guide",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any",
+    "url": "https://linacre.site/folding-stool-calculator",
+    "description": "A premium DIY woodworking calculator that generates every measurement needed to build a folding camp stool from a single leg length.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+  }
+  -->
+
+  <!-- ============================================================
+       Tailwind CSS (Play CDN) + config
+  ============================================================ -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
+          },
+          keyframes: {
+            'fade-up': {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            'pop': {
+              '0%': { transform: 'scale(0.96)', opacity: '0.6' },
+              '60%': { transform: 'scale(1.02)' },
+              '100%': { transform: 'scale(1)', opacity: '1' }
+            },
+            'shimmer': {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            }
+          },
+          animation: {
+            'fade-up': 'fade-up 0.5s ease-out both',
+            'pop': 'pop 0.35s ease-out both'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- React + Babel (no build step, fully client-side) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
+
+  <!-- ============================================================
+       Custom CSS: base, print mode, range slider, scrollbar
+  ============================================================ -->
+  <style>
+    html { scroll-behavior: smooth; }
+    #top { scroll-margin-top: 5rem; }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    body {
+      background-color: #09090b;
+      background-image:
+        radial-gradient(60rem 60rem at 80% -10%, rgba(16,185,129,0.10), transparent 60%),
+        radial-gradient(50rem 50rem at -10% 10%, rgba(6,182,212,0.08), transparent 55%);
+      background-attachment: fixed;
+    }
+    /* Smooth value transitions for stat cards */
+    .value-tween { transition: color .25s ease, transform .25s ease; }
+
+    /* Range slider */
+    input[type="range"].emerald-range {
+      -webkit-appearance: none; appearance: none;
+      height: 8px; border-radius: 9999px; outline: none;
+      background: linear-gradient(to right, #10b981 var(--pct,50%), #27272a var(--pct,50%));
+    }
+    input[type="range"].emerald-range::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 22px; height: 22px; border-radius: 9999px;
+      background: #ecfdf5; border: 3px solid #10b981;
+      cursor: pointer; box-shadow: 0 0 0 4px rgba(16,185,129,0.18);
+      transition: transform .15s ease;
+    }
+    input[type="range"].emerald-range::-webkit-slider-thumb:hover { transform: scale(1.12); }
+    input[type="range"].emerald-range::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 9999px;
+      background: #ecfdf5; border: 3px solid #10b981; cursor: pointer;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+    /* ============================================================
+       PRINT MODE — hide controls, print reference content only
+    ============================================================ */
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      html, body {
+        background: #ffffff !important;
+        background-image: none !important;
+      }
+      .no-print { display: none !important; }
+      .print-card {
+        background: #ffffff !important;
+        color: #09090b !important;
+        border: 1px solid #d4d4d8 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+      }
+      .print-text { color: #09090b !important; }
+      .print-muted { color: #52525b !important; }
+      .print-accent { color: #047857 !important; }
+      .print-break { break-inside: avoid; page-break-inside: avoid; }
+      .print-full { width: 100% !important; max-width: 100% !important; }
+      .print-stroke { stroke: #18181b !important; }
+      .print-accent-stroke { stroke: #059669 !important; }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-zinc-300 antialiased selection:bg-emerald-500/30">
+  <noscript>
+    <div style="padding:2rem;text-align:center;color:#fafafa;background:#09090b">
+      This woodworking calculator requires JavaScript to be enabled.
+    </div>
+  </noscript>
+  <div id="root"></div>
+
+  <!-- ============================================================
+       APPLICATION — single React component, functional + hooks only
+  ============================================================ -->
+  <script type="text/babel" data-presets="react">
+    const { useState, useMemo, useCallback, useEffect, useRef } = React;
+
+    /* ============================================================
+       CONSTANTS & FORMULA ENGINE
+    ============================================================ */
+    const DEFAULT_LEG = 350;   // mm
+    const MIN_LEG     = 200;   // mm
+    const MAX_LEG     = 900;   // mm
+    const STEP        = 1;     // mm
+
+    /**
+     * Formula engine. All derived measurements are functions of L (leg length).
+     *  Total Stool Height  = L × 0.85
+     *  Canvas Width        = L × 0.65
+     *  Canvas Length       = L × 0.85
+     *  Cross Brace Length  = L × 0.75
+     *  Pivot Hole Distance = L × 0.50
+     */
+    const compute = (L) => ({
+      legLength:     L,
+      totalHeight:   Math.round(L * 0.85),
+      canvasWidth:   Math.round(L * 0.65),
+      canvasLength:  Math.round(L * 0.85),
+      crossBrace:    Math.round(L * 0.75),
+      pivotDistance: Math.round(L * 0.50),
+    });
+
+    /* ============================================================
+       ICONS — inline SVG (Lucide-style), no external icon library
+    ============================================================ */
+    const stroke = {
+      fill: "none", stroke: "currentColor", strokeWidth: 2,
+      strokeLinecap: "round", strokeLinejoin: "round"
+    };
+    const Icon = {
+      Ruler: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M3 7l14 14 4-4L7 3z"/><path d="M7 9l1.5 1.5M10 6l1.5 1.5M13 9l1.5 1.5M16 6l1.5 1.5"/></svg>),
+      Height: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M12 3v18M8 7l4-4 4 4M8 17l4 4 4-4"/></svg>),
+      Seat: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>),
+      Brace: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M4 12h16"/><path d="M6 8l-2 4 2 4M18 8l2 4-2 4"/></svg>),
+      Pivot: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>),
+      Drill: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M4 4h7v4H4zM11 5h5l3 3v3h-8z"/><path d="M7 8v5l2 3v6h2v-6l1-3"/></svg>),
+      Saw: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M3 14l2-5 4 2 3-4 4 3 4-1 1 4z"/><path d="M3 14l1 4h16l1-4"/></svg>),
+      Tape: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><rect x="3" y="9" width="14" height="9" rx="2"/><path d="M17 12h4l-2-4h-2"/><circle cx="8" cy="13.5" r="2"/></svg>),
+      Square: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M4 3v17h17"/><path d="M7 14h8"/></svg>),
+      Pencil: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>),
+      Sandpaper: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M6 10l1 1M9 10l1 1M12 10l1 1M15 10l1 1M6 13l1 1M9 13l1 1M12 13l1 1M15 13l1 1"/></svg>),
+      Clamp: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M4 6h16M6 6v9a2 2 0 002 2h8a2 2 0 002-2V6M9 17v3M15 17v3"/></svg>),
+      Screwdriver: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M14 3l4 4-6 6M12 13l-7 7-2-2 7-7M10 15l4-4"/></svg>),
+      Spanner: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M15 4a4 4 0 014 6l-9 9-4 1 1-4 9-9a4 4 0 013-3z"/></svg>),
+      Bit: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M5 21l9-9M9 17l-4-4 3-3 4 4zM14 7l3 3 3-3-3-3z"/></svg>),
+      Copy: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>),
+      Download: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M12 3v12M8 11l4 4 4-4M4 21h16"/></svg>),
+      Printer: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-4a2 2 0 012-2h16a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>),
+      Reset: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M3 12a9 9 0 109-9 9 9 0 00-7 3.3M3 3v4h4"/></svg>),
+      Check: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M20 6L9 17l-5-5"/></svg>),
+      Shield: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>),
+      Wrench: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M14 7a4 4 0 01-5 5L4 17l3 3 5-5a4 4 0 015-5l-2.5 2.5L11 9l2-2z"/></svg>),
+      Cog: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>),
+      Blueprint: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M14 13h4M14 16h3"/></svg>),
+      List: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>),
+      Info: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>),
+      Spark: (p) => (<svg viewBox="0 0 24 24" {...stroke} {...p}><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>),
+    };
+
+    /* ============================================================
+       SMALL PRESENTATIONAL HELPERS
+    ============================================================ */
+
+    // Section heading with an icon, title and subtitle
+    function SectionHeader({ icon: I, title, subtitle, id }) {
+      return (
+        <div className="flex items-start gap-4 mb-6">
+          {I && (
+            <span className="shrink-0 grid place-items-center w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
+              <I className="w-5 h-5" />
+            </span>
+          )}
+          <div>
+            <h2 id={id} className="text-xl sm:text-2xl font-semibold tracking-tight text-zinc-50">{title}</h2>
+            {subtitle && <p className="mt-1 text-sm text-zinc-400">{subtitle}</p>}
+          </div>
+        </div>
+      );
+    }
+
+    // A glass panel wrapper
+    function Panel({ children, className = "", as: Tag = "section", ...rest }) {
+      return (
+        <Tag
+          className={`print-card relative rounded-2xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-xl shadow-xl shadow-black/20 ${className}`}
+          {...rest}
+        >
+          {children}
+        </Tag>
+      );
+    }
+
+    /* ============================================================
+       SVG ENGINEERING DIAGRAMS
+       Front / Side / Folded views — responsive, labelled
+    ============================================================ */
+    function Diagrams({ calc }) {
+      const L = calc.legLength;
+      // Common label text style
+      const lbl = { className: "print-text fill-zinc-300", fontSize: 10, fontWeight: 600 };
+      const dim = { className: "print-muted fill-zinc-500", fontSize: 9 };
+      const accent = "#10b981"; // emerald-500
+      const cyan   = "#22d3ee"; // cyan-400
+      const blue   = "#3b82f6"; // blue-500
+
+      return (
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {/* ---------- FRONT VIEW ---------- */}
+          <figure className="print-card print-break rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+            <figcaption className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-emerald-400 print-accent">Front View</figcaption>
+            <svg viewBox="0 0 260 230" className="w-full h-auto" role="img" aria-label={`Front view of the folding stool. Leg length ${L} millimetres, seat width ${calc.canvasWidth} millimetres.`}>
+              {/* Crossed legs */}
+              <line x1="55" y1="200" x2="165" y2="45" className="print-accent-stroke" stroke={accent} strokeWidth="7" strokeLinecap="round" />
+              <line x1="205" y1="200" x2="95" y2="45" className="print-accent-stroke" stroke={accent} strokeWidth="7" strokeLinecap="round" />
+              {/* Pivot point */}
+              <circle cx="130" cy="122" r="7" className="fill-cyan-400" stroke="#0f172a" strokeWidth="2" />
+              <circle cx="130" cy="122" r="2.5" className="fill-zinc-950" />
+              {/* Seat canvas */}
+              <rect x="78" y="33" width="104" height="16" rx="3" className="fill-blue-500/20 print-card" stroke={blue} strokeWidth="2" />
+              {/* Feet */}
+              <rect x="47" y="198" width="16" height="6" rx="2" className="fill-zinc-700" />
+              <rect x="197" y="198" width="16" height="6" rx="2" className="fill-zinc-700" />
+              {/* Leg length dimension (left) */}
+              <line x1="28" y1="45" x2="28" y2="204" className="print-stroke" stroke="#52525b" strokeWidth="1" />
+              <path d="M24 49l4-6 4 6M24 200l4 6 4-6" className="print-stroke" stroke="#52525b" strokeWidth="1" fill="none" />
+              <text x="20" y="128" transform="rotate(-90 20 128)" textAnchor="middle" {...dim}>Leg {L} mm</text>
+              {/* Seat width dimension (bottom) */}
+              <line x1="78" y1="218" x2="182" y2="218" className="print-stroke" stroke="#52525b" strokeWidth="1" />
+              <path d="M82 214l-6 4 6 4M178 214l6 4-6 4" className="print-stroke" stroke="#52525b" strokeWidth="1" fill="none" />
+              <text x="130" y="214" textAnchor="middle" {...dim}>Seat {calc.canvasWidth} mm</text>
+              {/* Labels */}
+              <text x="150" y="60" {...lbl} fill={blue}>Seat</text>
+              <text x="140" y="120" {...lbl} fill={cyan}>Pivot</text>
+              <text x="40" y="40" {...lbl} fill={accent}>Leg</text>
+            </svg>
+          </figure>
+
+          {/* ---------- SIDE VIEW ---------- */}
+          <figure className="print-card print-break rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+            <figcaption className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-emerald-400 print-accent">Side View</figcaption>
+            <svg viewBox="0 0 260 230" className="w-full h-auto" role="img" aria-label={`Side view showing cross braces of ${calc.crossBrace} millimetres and overall height ${calc.totalHeight} millimetres.`}>
+              {/* Two parallel X-frames (edge on) */}
+              <line x1="95" y1="200" x2="150" y2="45" className="print-accent-stroke" stroke={accent} strokeWidth="7" strokeLinecap="round" />
+              <line x1="165" y1="200" x2="110" y2="45" className="print-accent-stroke" stroke={accent} strokeWidth="7" strokeLinecap="round" />
+              {/* Seat */}
+              <rect x="95" y="33" width="70" height="12" rx="3" className="fill-blue-500/20 print-card" stroke={blue} strokeWidth="2" />
+              {/* Cross braces */}
+              <line x1="92" y1="150" x2="168" y2="150" className="print-stroke" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round" />
+              <line x1="98" y1="95" x2="162" y2="95" className="print-stroke" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round" />
+              {/* Feet */}
+              <rect x="88" y="198" width="14" height="6" rx="2" className="fill-zinc-700" />
+              <rect x="158" y="198" width="14" height="6" rx="2" className="fill-zinc-700" />
+              {/* Height dimension */}
+              <line x1="40" y1="39" x2="40" y2="204" className="print-stroke" stroke="#52525b" strokeWidth="1" />
+              <path d="M36 43l4-6 4 6M36 200l4 6 4-6" className="print-stroke" stroke="#52525b" strokeWidth="1" fill="none" />
+              <text x="32" y="128" transform="rotate(-90 32 128)" textAnchor="middle" {...dim}>Height {calc.totalHeight} mm</text>
+              {/* Labels */}
+              <text x="120" y="148" {...lbl} fill="#fbbf24">Brace {calc.crossBrace} mm</text>
+              <text x="120" y="88" {...lbl} fill="#fbbf24">Brace {calc.crossBrace} mm</text>
+              <text x="120" y="28" {...lbl} fill={blue}>Seat {calc.canvasLength} mm</text>
+            </svg>
+          </figure>
+
+          {/* ---------- FOLDED VIEW ---------- */}
+          <figure className="print-card print-break rounded-xl border border-zinc-800 bg-zinc-950/40 p-4 sm:col-span-2 xl:col-span-1">
+            <figcaption className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-emerald-400 print-accent">Folded View</figcaption>
+            <svg viewBox="0 0 260 230" className="w-full h-auto" role="img" aria-label="Folded view showing the stool collapsed flat for storage.">
+              {/* Legs collapsed parallel */}
+              <line x1="105" y1="200" x2="115" y2="45" className="print-accent-stroke" stroke={accent} strokeWidth="6" strokeLinecap="round" />
+              <line x1="145" y1="200" x2="155" y2="45" className="print-accent-stroke" stroke={accent} strokeWidth="6" strokeLinecap="round" />
+              {/* Pivot */}
+              <circle cx="120" cy="122" r="5" className="fill-cyan-400" />
+              <circle cx="150" cy="122" r="5" className="fill-cyan-400" />
+              {/* Folded seat draped */}
+              <path d="M100 45 q15 -14 30 0 q15 -14 30 0 l0 40 q-15 -10 -30 0 q-15 -10 -30 0 z"
+                className="fill-blue-500/20 print-card" stroke={blue} strokeWidth="2" />
+              {/* Feet */}
+              <rect x="100" y="198" width="12" height="6" rx="2" className="fill-zinc-700" />
+              <rect x="148" y="198" width="12" height="6" rx="2" className="fill-zinc-700" />
+              {/* Dimension */}
+              <line x1="200" y1="45" x2="200" y2="204" className="print-stroke" stroke="#52525b" strokeWidth="1" />
+              <path d="M196 49l4-6 4 6M196 200l4 6 4-6" className="print-stroke" stroke="#52525b" strokeWidth="1" fill="none" />
+              <text x="208" y="128" transform="rotate(90 208 128)" textAnchor="middle" {...dim}>Folded ~{L} mm</text>
+              {/* Labels */}
+              <text x="120" y="30" {...lbl} fill={blue}>Seat (folded)</text>
+              <text x="70" y="126" {...lbl} fill={cyan}>Pivot</text>
+            </svg>
+          </figure>
+        </div>
+      );
+    }
+
+    /* ============================================================
+       STAT CARD
+    ============================================================ */
+    function StatCard({ icon: I, label, value, unit, description, accent }) {
+      const accents = {
+        emerald: { grad: "from-emerald-500/15 to-emerald-500/0", chip: "text-emerald-400 ring-emerald-500/20" },
+        blue:    { grad: "from-blue-500/15 to-blue-500/0",       chip: "text-blue-400 ring-blue-500/20" },
+        cyan:    { grad: "from-cyan-500/15 to-cyan-500/0",       chip: "text-cyan-400 ring-cyan-500/20" },
+        amber:   { grad: "from-amber-500/15 to-amber-500/0",     chip: "text-amber-400 ring-amber-500/20" },
+      };
+      const a = accents[accent] || accents.emerald;
+
+      return (
+        <article className="print-card print-break group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-2xl hover:shadow-emerald-500/5">
+          <div className={`absolute inset-0 bg-gradient-to-br ${a.grad} opacity-60 transition-opacity duration-300 group-hover:opacity-100`} />
+          <div className="relative">
+            <div className="flex items-center justify-between">
+              <span className={`grid place-items-center w-10 h-10 rounded-xl bg-zinc-950/60 ring-1 ${a.chip}`}>
+                <I className="w-5 h-5" />
+              </span>
+            </div>
+            <p className="mt-4 text-xs font-medium uppercase tracking-wider text-zinc-400 print-muted">{label}</p>
+            <div className="mt-1 flex items-baseline gap-1">
+              <span className="value-tween text-3xl sm:text-4xl font-bold tracking-tight text-zinc-50 print-text">{value}</span>
+              <span className="text-sm font-medium text-zinc-400 print-muted">{unit}</span>
+            </div>
+            <p className="mt-2 text-xs text-zinc-500 print-muted">{description}</p>
+          </div>
+        </article>
+      );
+    }
+
+    /* ============================================================
+       MAIN APPLICATION COMPONENT
+    ============================================================ */
+    function FoldingStoolCalculator() {
+      const [legLength, setLegLength] = useState(DEFAULT_LEG);
+      const [error, setError] = useState("");
+      const [copied, setCopied] = useState(false);
+      const [resetPulse, setResetPulse] = useState(0);
+      const generatedAtRef = useRef(new Date());
+
+      /* ---- Derived measurements (memoised) ---- */
+      const calc = useMemo(() => compute(legLength), [legLength]);
+
+      /* ---- Validate + apply a new leg length ---- */
+      const applyLegLength = useCallback((raw) => {
+        const value = Number(raw);
+        if (raw === "" || Number.isNaN(value)) {
+          setError("Please enter a number between 200 and 900 mm.");
+          return;
+        }
+        if (value < MIN_LEG) {
+          setError(`Leg length must be at least ${MIN_LEG} mm.`);
+          return;
+        }
+        if (value > MAX_LEG) {
+          setError(`Leg length must be ${MAX_LEG} mm or less.`);
+          return;
+        }
+        setError("");
+        setLegLength(value);
+      }, []);
+
+      const onInputChange = useCallback((e) => applyLegLength(e.target.value), [applyLegLength]);
+      const onRangeChange = useCallback((e) => {
+        setError("");
+        setLegLength(Number(e.target.value));
+      }, []);
+
+      /* ---- Reset to defaults (with animation pulse) ---- */
+      const handleReset = useCallback(() => {
+        setError("");
+        setLegLength(DEFAULT_LEG);
+        generatedAtRef.current = new Date();
+        setResetPulse((n) => n + 1);
+      }, []);
+
+      /* ---- Build export payload ---- */
+      const buildPayload = useCallback(() => {
+        const ts = new Date().toISOString();
+        return {
+          project: "DIY Folding Stool",
+          generatedAt: ts,
+          unit: "mm",
+          measurements: {
+            legLength: calc.legLength,
+            totalHeight: calc.totalHeight,
+            canvasWidth: calc.canvasWidth,
+            canvasLength: calc.canvasLength,
+            crossBrace: calc.crossBrace,
+            pivotDistance: calc.pivotDistance,
+          },
+          cuttingList: [
+            { qty: 4, part: "Wooden Leg", length: `${calc.legLength} mm`, notes: "20×40 mm timber, primary frame" },
+            { qty: 2, part: "Cross Brace", length: `${calc.crossBrace} mm`, notes: "20×40 mm timber, lateral support" },
+            { qty: 1, part: "Canvas Seat", length: `${calc.canvasWidth} × ${calc.canvasLength} mm`, notes: "Heavy canvas, hemmed edges" },
+          ],
+        };
+      }, [calc]);
+
+      /* ---- Copy measurements as plain text ---- */
+      const handleCopy = useCallback(() => {
+        const p = buildPayload();
+        const lines = [
+          "DIY FOLDING STOOL — MEASUREMENTS",
+          "================================",
+          `Leg Length        : ${p.measurements.legLength} mm`,
+          `Overall Height    : ${p.measurements.totalHeight} mm`,
+          `Seat Width        : ${p.measurements.canvasWidth} mm`,
+          `Seat Length       : ${p.measurements.canvasLength} mm`,
+          `Cross Brace       : ${p.measurements.crossBrace} mm`,
+          `Pivot Distance    : ${p.measurements.pivotDistance} mm`,
+          "",
+          `Generated: ${p.generatedAt}`,
+        ].join("\n");
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lines).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          });
+        }
+      }, [buildPayload]);
+
+      /* ---- Trigger a client-side file download ---- */
+      const downloadBlob = useCallback((content, filename, type) => {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, []);
+
+      const handleDownloadJSON = useCallback(() => {
+        downloadBlob(JSON.stringify(buildPayload(), null, 2), "folding-stool-measurements.json", "application/json");
+      }, [buildPayload, downloadBlob]);
+
+      const handleDownloadCSV = useCallback(() => {
+        const rows = [
+          ["Measurement", "Value (mm)"],
+          ["Leg Length", calc.legLength],
+          ["Overall Height", calc.totalHeight],
+          ["Seat Width", calc.canvasWidth],
+          ["Seat Length", calc.canvasLength],
+          ["Cross Brace", calc.crossBrace],
+          ["Pivot Distance", calc.pivotDistance],
+        ];
+        const csv = rows.map((r) => r.join(",")).join("\n");
+        downloadBlob(csv, "folding-stool-measurements.csv", "text/csv;charset=utf-8");
+      }, [calc, downloadBlob]);
+
+      /* ---- Print only the reference content ---- */
+      const handlePrint = useCallback(() => window.print(), []);
+
+      /* ---- Range slider gradient fill ---- */
+      const rangePct = ((legLength - MIN_LEG) / (MAX_LEG - MIN_LEG)) * 100;
+
+      /* ---- Footer timestamp (re-render each minute) ---- */
+      const [now, setNow] = useState(() => new Date());
+      useEffect(() => {
+        const id = setInterval(() => setNow(new Date()), 60000);
+        return () => clearInterval(id);
+      }, []);
+
+      /* ---- Static data ---- */
+      const materials = [
+        { qty: "4",  name: "Wooden Legs",      note: `${calc.legLength} mm each`, required: true },
+        { qty: "2",  name: "Cross Braces",     note: `${calc.crossBrace} mm each`, required: true },
+        { qty: "1",  name: "Heavy Canvas",     note: `${calc.canvasWidth} × ${calc.canvasLength} mm`, required: true },
+        { qty: "4",  name: "Bolts (M8)",       note: "Pivot hardware", required: true },
+        { qty: "8",  name: "Washers",          note: "2 per bolt", required: true },
+        { qty: "4",  name: "Lock Nuts",        note: "Nyloc, M8", required: true },
+        { qty: "—",  name: "Wood Glue",        note: "Optional reinforcement", required: false },
+        { qty: "—",  name: "Exterior Finish",  note: "Optional weatherproofing", required: false },
+        { qty: "—",  name: "Rubber Feet",      note: "Optional anti-slip", required: false },
+      ];
+
+      const tools = [
+        { name: "Drill", icon: Icon.Drill },
+        { name: "8 mm Drill Bit", icon: Icon.Bit },
+        { name: "Saw", icon: Icon.Saw },
+        { name: "Tape Measure", icon: Icon.Tape },
+        { name: "Square", icon: Icon.Square },
+        { name: "Pencil", icon: Icon.Pencil },
+        { name: "Sandpaper", icon: Icon.Sandpaper },
+        { name: "Clamps", icon: Icon.Clamp },
+        { name: "Screwdriver", icon: Icon.Screwdriver },
+        { name: "Spanners", icon: Icon.Spanner },
+      ];
+
+      const cuttingList = [
+        { qty: 4, part: "Wooden Leg",   length: `${calc.legLength} mm`, notes: "20 × 40 mm timber — cut to leg length, two pairs mirrored" },
+        { qty: 2, part: "Cross Brace",  length: `${calc.crossBrace} mm`, notes: "20 × 40 mm timber — lateral support between frames" },
+        { qty: 1, part: "Canvas Seat",  length: `${calc.canvasWidth} × ${calc.canvasLength} mm`, notes: "Heavy canvas — hem and reinforce all edges" },
+      ];
+
+      const steps = [
+        {
+          n: 1, title: "Preparation", icon: Icon.Cog,
+          body: [
+            `Set out four legs at ${calc.legLength} mm and two braces at ${calc.crossBrace} mm.`,
+            "Check timber is straight, dry and free of splits.",
+            `Measure and mark the pivot point ${calc.pivotDistance} mm down from the top of each leg.`,
+            "Mark all cuts with a pencil and square for clean, repeatable lines.",
+          ],
+        },
+        {
+          n: 2, title: "Drilling the Pivots", icon: Icon.Drill,
+          body: [
+            `Drill an 8 mm pivot hole exactly ${calc.pivotDistance} mm from the top of each leg.`,
+            "Drill squarely through the wide face so the two leg pairs line up perfectly.",
+            "Clamp each piece before drilling to prevent wander and splitting.",
+            "Deburr every hole so bolts seat cleanly against the timber.",
+          ],
+        },
+        {
+          n: 3, title: "Build the X-Frame", icon: Icon.Blueprint,
+          body: [
+            "Pair the legs into two mirrored 'X' assemblies at the pivot holes.",
+            "Thread a bolt through each pivot: washer, leg, washer, leg, washer.",
+            "Secure with a nyloc lock nut — firm enough to hold shape but loose enough to fold.",
+            "Check both frames open to an even, balanced stance.",
+          ],
+        },
+        {
+          n: 4, title: "Install the Braces", icon: Icon.Brace,
+          body: [
+            `Fix two cross braces of ${calc.crossBrace} mm between the frames to lock the stance.`,
+            "Position one brace high and one low to prevent side-to-side wobble.",
+            "Align braces square to the frames before fastening.",
+            "Use glue on all brace joints for a rigid, rattle-free structure.",
+          ],
+        },
+        {
+          n: 5, title: "Attach the Canvas", icon: Icon.Seat,
+          body: [
+            `Cut the seat to ${calc.canvasWidth} × ${calc.canvasLength} mm with hemmed edges.`,
+            "Stretch the canvas taut across the top of the opened frame.",
+            `Leave ${Math.max(8, Math.round(calc.legLength * 0.03))} mm of folding clearance at each end so the stool closes freely.`,
+            "Reinforce the corners and add edge binding to resist tearing under load.",
+          ],
+        },
+      ];
+
+      const safety = [
+        { t: "Wear eye protection", d: "Safety glasses for all drilling, sawing and sanding." },
+        { t: "Clamp timber securely", d: "Never hold work by hand while cutting or drilling." },
+        { t: "Sand all edges", d: "Remove splinters and ease every sharp corner." },
+        { t: "Check bolt tightness", d: "Re-tighten hardware before first use and regularly." },
+        { t: "Test with light weight first", d: "Load the stool gradually to confirm stability." },
+        { t: "Inspect canvas regularly", d: "Replace the seat if fabric shows wear or fraying." },
+      ];
+
+      const stats = [
+        { icon: Icon.Ruler,  label: "Leg Length",     value: calc.legLength,     unit: "mm", description: "Your single input — the master dimension.", accent: "emerald" },
+        { icon: Icon.Height, label: "Overall Height", value: calc.totalHeight,   unit: "mm", description: "Total finished stool height.", accent: "blue" },
+        { icon: Icon.Seat,   label: "Seat Width",     value: calc.canvasWidth,   unit: "mm", description: "Canvas seat width.", accent: "cyan" },
+        { icon: Icon.Seat,   label: "Seat Length",    value: calc.canvasLength,  unit: "mm", description: "Canvas seat length.", accent: "amber" },
+        { icon: Icon.Brace,  label: "Brace Length",   value: calc.crossBrace,    unit: "mm", description: "Cross brace length between frames.", accent: "emerald" },
+        { icon: Icon.Pivot,  label: "Pivot Position", value: calc.pivotDistance, unit: "mm", description: "Pivot hole distance from top.", accent: "blue" },
+      ];
+
+      return (
+        <div className="min-h-screen">
+          {/* ============================================================
+               HEADER
+          ============================================================ */}
+          <header role="banner" className="no-print sticky top-0 z-40 border-b border-zinc-800/80 bg-zinc-950/70 backdrop-blur-xl">
+            <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+              <a href="#top" className="flex items-center gap-3 group">
+                <span className="grid place-items-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-400 text-zinc-950 shadow-lg shadow-emerald-500/20 transition-transform group-hover:scale-105">
+                  <Icon.Blueprint className="w-5 h-5" />
+                </span>
+                <span className="leading-tight">
+                  <span className="block text-sm font-semibold text-zinc-50">Folding Stool Builder</span>
+                  <span className="block text-xs text-zinc-400">Linacre.site · Woodworking</span>
+                </span>
+              </a>
+              <nav aria-label="Quick actions" className="flex items-center gap-2">
+                <button onClick={handlePrint}
+                  className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/60 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800 hover:border-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-zinc-950">
+                  <Icon.Printer className="w-4 h-4" /> Print
+                </button>
+              </nav>
+            </div>
+          </header>
+
+          {/* ============================================================
+               MAIN
+          ============================================================ */}
+          <main id="top" role="main" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 space-y-10">
+
+            {/* ---- HERO ---- */}
+            <section className="no-print animate-fade-up text-center sm:text-left">
+              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                <Icon.Spark className="w-3.5 h-3.5" /> Dynamic calculator · updates instantly
+              </div>
+              <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-50">
+                Folding Stool <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Calculator & Builder Guide</span>
+              </h1>
+              <p className="mt-3 max-w-2xl text-base text-zinc-400">
+                Enter a single leg length and instantly generate every measurement, cutting list and step you need to build a sturdy folding camp stool.
+              </p>
+            </section>
+
+            {/* ---- INPUT + TOOLBAR ---- */}
+            <Panel as="section" aria-labelledby="input-heading" className="no-print p-5 sm:p-6 animate-fade-up">
+              <SectionHeader id="input-heading" icon={Icon.Ruler} title="Set your leg length" subtitle="One input drives the entire build." />
+
+              <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+                {/* Input column */}
+                <div className="space-y-5">
+                  <label htmlFor="legLength" className="block text-sm font-medium text-zinc-300">
+                    Leg Length <span className="text-zinc-500">(mm)</span>
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <button type="button" onClick={() => applyLegLength(Math.max(MIN_LEG, legLength - 10))}
+                      aria-label="Decrease leg length by 10 mm"
+                      className="grid place-items-center w-11 h-11 shrink-0 rounded-xl border border-zinc-700 bg-zinc-800/60 text-zinc-200 transition hover:bg-zinc-800 hover:text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+                      <Icon.Brace className="w-5 h-5 rotate-90" />
+                    </button>
+                    <input
+                      id="legLength"
+                      name="legLength"
+                      type="number"
+                      inputMode="numeric"
+                      min={MIN_LEG} max={MAX_LEG} step={STEP}
+                      value={legLength}
+                      onChange={onInputChange}
+                      aria-invalid={Boolean(error)}
+                      aria-describedby={error ? "leg-error" : "leg-help"}
+                      className="w-full rounded-xl border border-zinc-700 bg-zinc-950/70 px-4 py-3 text-2xl font-semibold text-zinc-50 shadow-inner transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                    />
+                    <button type="button" onClick={() => applyLegLength(Math.min(MAX_LEG, legLength + 10))}
+                      aria-label="Increase leg length by 10 mm"
+                      className="grid place-items-center w-11 h-11 shrink-0 rounded-xl border border-zinc-700 bg-zinc-800/60 text-zinc-200 transition hover:bg-zinc-800 hover:text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+                      <Icon.Brace className="w-5 h-5 rotate-90 scale-y-[-1]" />
+                    </button>
+                  </div>
+
+                  {/* Range slider */}
+                  <input
+                    type="range" min={MIN_LEG} max={MAX_LEG} step={STEP}
+                    value={legLength} onChange={onRangeChange}
+                    aria-label="Leg length slider"
+                    className="emerald-range w-full"
+                    style={{ "--pct": `${rangePct}%` }}
+                  />
+                  <div className="flex justify-between text-xs text-zinc-500">
+                    <span>{MIN_LEG} mm</span><span>Default {DEFAULT_LEG} mm</span><span>{MAX_LEG} mm</span>
+                  </div>
+
+                  {/* Validation */}
+                  <div aria-live="polite">
+                    {error ? (
+                      <p id="leg-error" role="alert" className="flex items-center gap-2 text-sm text-rose-400">
+                        <Icon.Info className="w-4 h-4" /> {error}
+                      </p>
+                    ) : (
+                      <p id="leg-help" className="text-sm text-zinc-500">Accepts {MIN_LEG}–{MAX_LEG} mm. All measurements update instantly.</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex flex-wrap gap-2 lg:flex-col lg:items-stretch">
+                  <button onClick={handleCopy}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/60 px-4 py-2.5 text-sm font-medium text-zinc-100 transition hover:bg-zinc-800 hover:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+                    {copied ? <Icon.Check className="w-4 h-4 text-emerald-400" /> : <Icon.Copy className="w-4 h-4" />}
+                    {copied ? "Copied!" : "Copy"}
+                  </button>
+                  <button onClick={handleDownloadJSON}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/60 px-4 py-2.5 text-sm font-medium text-zinc-100 transition hover:bg-zinc-800 hover:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <Icon.Download className="w-4 h-4" /> JSON
+                  </button>
+                  <button onClick={handleDownloadCSV}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/60 px-4 py-2.5 text-sm font-medium text-zinc-100 transition hover:bg-zinc-800 hover:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                    <Icon.Download className="w-4 h-4" /> CSV
+                  </button>
+                  <button onClick={handleReset}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/60 px-4 py-2.5 text-sm font-medium text-zinc-100 transition hover:bg-zinc-800 hover:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                    <Icon.Reset className="w-4 h-4" /> Reset
+                  </button>
+                </div>
+              </div>
+            </Panel>
+
+            {/* ---- DASHBOARD METRICS ---- */}
+            <section aria-labelledby="metrics-heading">
+              <SectionHeader id="metrics-heading" icon={Icon.Spark} title="Dashboard" subtitle="Live key measurements, recalculated on every change." />
+              <div key={resetPulse} className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 animate-pop">
+                {stats.map((s) => (
+                  <StatCard key={s.label} {...s} />
+                ))}
+              </div>
+            </section>
+
+            {/* ---- DIAGRAMS ---- */}
+            <section aria-labelledby="diagram-heading">
+              <SectionHeader id="diagram-heading" icon={Icon.Blueprint} title="Engineering Diagrams" subtitle="Scaled schematic — front, side and folded views." />
+              <Diagrams calc={calc} />
+            </section>
+
+            {/* ---- CUTTING LIST ---- */}
+            <Panel as="section" aria-labelledby="cutting-heading" className="p-5 sm:p-6">
+              <SectionHeader id="cutting-heading" icon={Icon.List} title="Cutting List" subtitle="Take this straight to the bench." />
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm">
+                  <caption className="sr-only">Cutting list derived from a leg length of {calc.legLength} millimetres</caption>
+                  <thead>
+                    <tr className="border-b border-zinc-800 text-xs uppercase tracking-wider text-zinc-400 print-muted">
+                      <th scope="col" className="py-3 pr-4 font-semibold">Qty</th>
+                      <th scope="col" className="py-3 pr-4 font-semibold">Part</th>
+                      <th scope="col" className="py-3 pr-4 font-semibold">Length</th>
+                      <th scope="col" className="py-3 font-semibold">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cuttingList.map((row, i) => (
+                      <tr key={row.part} className={`border-b border-zinc-800/60 transition hover:bg-zinc-800/30 ${i % 2 ? "bg-zinc-900/30" : ""}`}>
+                        <td className="py-3 pr-4 font-semibold text-emerald-400 print-accent">{row.qty}</td>
+                        <td className="py-3 pr-4 font-medium text-zinc-100 print-text">{row.part}</td>
+                        <td className="py-3 pr-4 text-zinc-300 print-text">{row.length}</td>
+                        <td className="py-3 text-zinc-400 print-muted">{row.notes}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Panel>
+
+            {/* ---- MATERIALS + TOOLS ---- */}
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* Materials */}
+              <Panel as="section" aria-labelledby="materials-heading" className="p-5 sm:p-6">
+                <SectionHeader id="materials-heading" icon={Icon.Wrench} title="Materials List" subtitle="Everything needed for the build." />
+                <ul className="space-y-2">
+                  {materials.map((m) => (
+                    <li key={m.name} className="print-card flex items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-4 py-3 transition hover:border-zinc-700">
+                      <div className="flex items-center gap-3">
+                        <span className="grid place-items-center w-8 h-8 rounded-lg bg-emerald-500/10 text-sm font-bold text-emerald-400 ring-1 ring-emerald-500/20">{m.qty}</span>
+                        <div>
+                          <p className="text-sm font-medium text-zinc-100 print-text">{m.name}</p>
+                          <p className="text-xs text-zinc-500 print-muted">{m.note}</p>
+                        </div>
+                      </div>
+                      <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${m.required ? "bg-emerald-500/15 text-emerald-300" : "bg-zinc-800 text-zinc-400"}`}>
+                        {m.required ? "Required" : "Optional"}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+
+              {/* Tools */}
+              <Panel as="section" aria-labelledby="tools-heading" className="no-print p-5 sm:p-6">
+                <SectionHeader id="tools-heading" icon={Icon.Cog} title="Required Tools" subtitle="Recommended workshop kit." />
+                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {tools.map((t) => (
+                    <li key={t.name} className="group flex flex-col items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900/40 px-3 py-4 text-center transition hover:-translate-y-0.5 hover:border-emerald-500/40 hover:bg-zinc-800/40">
+                      <span className="grid place-items-center w-10 h-10 rounded-lg bg-zinc-950/60 text-zinc-300 ring-1 ring-zinc-800 transition group-hover:text-emerald-400">
+                        <t.icon className="w-5 h-5" />
+                      </span>
+                      <span className="text-xs font-medium text-zinc-300">{t.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+            </div>
+
+            {/* ---- BUILD GUIDE ---- */}
+            <section aria-labelledby="guide-heading">
+              <SectionHeader id="guide-heading" icon={Icon.Blueprint} title="Build Guide" subtitle="Five steps from timber to finished stool." />
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {steps.map((s) => (
+                  <article key={s.n} className="print-card print-break group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-2xl hover:shadow-emerald-500/5">
+                    <div className="mb-4 flex items-center justify-between">
+                      <span className="grid place-items-center w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500/15 to-cyan-500/10 text-emerald-400 ring-1 ring-emerald-500/20 transition group-hover:scale-105">
+                        <s.icon className="w-5 h-5" />
+                      </span>
+                      <span className="text-3xl font-bold text-zinc-800 transition group-hover:text-zinc-700 print-muted">0{s.n}</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-zinc-50 print-text">{s.title}</h3>
+                    <ul className="mt-3 space-y-2">
+                      {s.body.map((line, i) => (
+                        <li key={i} className="flex gap-2 text-sm text-zinc-400 print-muted">
+                          <Icon.Check className="mt-0.5 w-4 h-4 shrink-0 text-emerald-500 print-accent" />
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+
+                {/* ---- SAFETY PANEL ---- */}
+                <aside aria-labelledby="safety-heading" className="print-card print-break flex flex-col rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="grid place-items-center w-11 h-11 rounded-xl bg-rose-500/15 text-rose-300 ring-1 ring-rose-500/30">
+                      <Icon.Shield className="w-5 h-5" />
+                    </span>
+                    <h3 id="safety-heading" className="text-lg font-semibold text-zinc-50 print-text">Safety Tips</h3>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {safety.map((s) => (
+                      <li key={s.t} className="flex gap-2">
+                        <Icon.Check className="mt-0.5 w-4 h-4 shrink-0 text-rose-300 print-accent" />
+                        <span><span className="font-medium text-zinc-200 print-text">{s.t}</span> <span className="text-zinc-400 print-muted">— {s.d}</span></span>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              </div>
+            </section>
+
+            {/* ---- ENGINEERING NOTES ---- */}
+            <Panel as="section" aria-labelledby="eng-heading" className="no-print p-5 sm:p-6">
+              <SectionHeader id="eng-heading" icon={Icon.Info} title="Engineering Notes" subtitle="Why the geometry works." />
+              <div className="grid gap-5 sm:grid-cols-2">
+                {[
+                  { t: "Why the pivot sits centrally", d: `Placing the pivot ${calc.pivotDistance} mm from the top keeps the leg pairs balanced so the stool opens to an even stance and the load transfers symmetrically through both frames.` },
+                  { t: "How the X-frame folds", d: "Each pair of legs rotates about a single pivot. Because the two frames only connect through the braces and canvas, the whole stool collapses flat for storage." },
+                  { t: "Why brace length matters", d: `The ${calc.crossBrace} mm braces fix the stance width. Too short and the stool is tippy; too long and it becomes wobbly. The ratio keeps the footprint stable yet portable.` },
+                  { t: "How seat tension affects stability", d: "A taut canvas preloads the frame, pulling the legs into their working position. Slack canvas lets the joints shift, so stretch it firmly and reinforce the edges." },
+                ].map((n) => (
+                  <article key={n.t} className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
+                    <h4 className="text-sm font-semibold text-emerald-400 print-accent">{n.t}</h4>
+                    <p className="mt-2 text-sm text-zinc-400 print-muted">{n.d}</p>
+                  </article>
+                ))}
+              </div>
+            </Panel>
+          </main>
+
+          {/* ============================================================
+               FOOTER
+          ============================================================ */}
+          <footer role="contentinfo" className="border-t border-zinc-800/80 bg-zinc-950/60">
+            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="grid place-items-center w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-400 text-zinc-950">
+                    <Icon.Blueprint className="w-4 h-4" />
+                  </span>
+                  <div className="text-sm">
+                    <p className="font-medium text-zinc-200 print-text">Folding Stool Builder</p>
+                    <p className="text-zinc-500 print-muted">Designed for DIY woodworking projects.</p>
+                  </div>
+                </div>
+                <dl className="grid grid-cols-2 gap-4 text-sm sm:flex sm:gap-8">
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-zinc-500 print-muted">Leg Length</dt>
+                    <dd className="font-semibold text-emerald-400 print-accent">{calc.legLength} mm</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-zinc-500 print-muted">Generated</dt>
+                    <dd className="font-semibold text-zinc-200 print-text">{now.toLocaleString("en-GB")}</dd>
+                  </div>
+                </dl>
+              </div>
+              <p className="mt-6 text-center text-xs text-zinc-600 print-muted">© {now.getFullYear()} Linacre.site · Build safely. Measure twice, cut once.</p>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    /* ============================================================
+       MOUNT
+    ============================================================ */
+    ReactDOM.createRoot(document.getElementById("root")).render(<FoldingStoolCalculator />);
+  </script>
+</body>
+</html>
