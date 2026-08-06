@@ -385,6 +385,73 @@
     }
 
     /* ============================================================
+       PIVOT DRILL GUIDE — a zoomed "where exactly to drill" view
+       The pivot hole sits at the midpoint of each leg (L × 0.50).
+    ============================================================ */
+    function PivotDrillGuide({ calc }) {
+      const L = calc.legLength;
+      const piv = calc.pivotDistance;
+      const cyan = "#22d3ee";      // accent for the drill point
+      const accent = "#10b981";    // leg colour
+      const dim = "#71717a";       // dimension lines (zinc-500)
+      const lbl = { className: "print-text fill-zinc-200", fontSize: 12, fontWeight: 600 };
+      const small = { className: "print-muted fill-zinc-400", fontSize: 11 };
+
+      return (
+        <figure className="print-card rounded-2xl border border-zinc-800 bg-zinc-950/40 p-4 sm:p-6">
+          <svg viewBox="0 0 540 340" className="w-full h-auto" role="img"
+            aria-label={`Drill guide. Drill an 8 millimetre pivot hole at the midpoint of each leg, ${piv} millimetres down from the top. Total leg length ${L} millimetres.`}>
+
+            {/* ---- Full leg length dimension (far left) ---- */}
+            <line x1="104" y1="44" x2="104" y2="296" className="print-stroke" stroke={dim} strokeWidth="1.5" />
+            <path d="M98 40 h12 l-6 8 z" className="print-stroke" fill={dim} stroke="none" />
+            <path d="M98 300 h12 l-6 -8 z" className="print-stroke" fill={dim} stroke="none" />
+            <text x="92" y="170" transform="rotate(-90 92 170)" textAnchor="middle" {...small}>Leg {L} mm</text>
+
+            {/* ---- Pivot distance dimension ---- */}
+            <line x1="150" y1="44" x2="150" y2="170" className="print-stroke" stroke={dim} strokeWidth="1.5" />
+            <path d="M144 40 h12 l-6 8 z" className="print-stroke" fill={dim} stroke="none" />
+            <path d="M144 174 h12 l-6 -8 z" className="print-stroke" fill={dim} stroke="none" />
+            <line x1="150" y1="44" x2="206" y2="44" className="print-stroke" stroke={dim} strokeWidth="1" strokeDasharray="3 3" />
+            <line x1="150" y1="170" x2="206" y2="170" className="print-stroke" stroke={dim} strokeWidth="1" strokeDasharray="3 3" />
+            <text x="138" y="107" transform="rotate(-90 138 107)" textAnchor="middle" {...lbl} fill={cyan}>{piv} mm from TOP</text>
+
+            {/* ---- The leg (wide face toward you) ---- */}
+            <rect x="206" y="44" width="58" height="252" rx="8" className="print-card" fill="rgba(16,185,129,0.10)" stroke={accent} strokeWidth="3" />
+
+            {/* TOP label + down chevron */}
+            <text x="235" y="30" textAnchor="middle" {...lbl}>TOP</text>
+            <path d="M227 34 l8 6 l8 -6" stroke={accent} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+
+            {/* ---- Drill point at the midpoint ---- */}
+            <line x1="206" y1="170" x2="264" y2="170" stroke={cyan} strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
+            <circle cx="235" cy="170" r="16" fill="rgba(34,211,238,0.14)" className="animate-pulse" />
+            <circle cx="235" cy="170" r="12" fill="none" stroke={cyan} strokeWidth="2.5" />
+            <line x1="217" y1="170" x2="253" y2="170" stroke={cyan} strokeWidth="2" />
+            <line x1="235" y1="152" x2="235" y2="188" stroke={cyan} strokeWidth="2" />
+            <circle cx="235" cy="170" r="4.5" fill="#0f172a" stroke={cyan} strokeWidth="2" />
+            <text x="235" y="208" textAnchor="middle" {...small} fill={cyan}>exact midpoint</text>
+
+            {/* ---- TOP callout (right) ---- */}
+            <line x1="264" y1="44" x2="320" y2="44" stroke={accent} strokeWidth="1.5" />
+            <rect x="320" y="26" width="196" height="36" rx="8" className="print-card" fill="rgba(16,185,129,0.08)" stroke={accent} strokeWidth="1.5" />
+            <text x="418" y="49" textAnchor="middle" {...lbl} fill={accent}>Measure from this TOP end</text>
+
+            {/* ---- DRILL HERE callout (right) ---- */}
+            <line x1="264" y1="170" x2="320" y2="170" stroke={cyan} strokeWidth="1.5" />
+            <rect x="320" y="138" width="196" height="64" rx="10" className="print-card" fill="rgba(34,211,238,0.08)" stroke={cyan} strokeWidth="1.5" />
+            <text x="418" y="160" textAnchor="middle" {...lbl} fill={cyan}>DRILL HERE — 8 mm hole</text>
+            <text x="418" y="178" textAnchor="middle" {...small}>straight through the wide face,</text>
+            <text x="418" y="193" textAnchor="middle" {...small}>keep the bit square (90°)</text>
+
+            {/* ---- Bottom note ---- */}
+            <text x="235" y="322" textAnchor="middle" {...small}>Same midpoint on all 4 legs — the two leg-pairs pivot on this hole.</text>
+          </svg>
+        </figure>
+      );
+    }
+
+    /* ============================================================
        STAT CARD
     ============================================================ */
     function StatCard({ icon: I, label, value, unit, description, accent }) {
@@ -617,10 +684,10 @@
         {
           n: 2, title: "Drilling the Pivots", icon: Icon.Drill,
           body: [
-            `Drill an 8 mm pivot hole exactly ${calc.pivotDistance} mm from the top of each leg.`,
-            "Drill squarely through the wide face so the two leg pairs line up perfectly.",
-            "Clamp each piece before drilling to prevent wander and splitting.",
-            "Deburr every hole so bolts seat cleanly against the timber.",
+            `Measure DOWN from the TOP end and mark the pivot at exactly ${calc.pivotDistance} mm — the halfway point of each leg (see the Pivot Hole guide above).`,
+            "Drill an 8 mm hole straight through the wide face, keeping the bit square (90°) so both leg-pairs line up.",
+            "Mark and drill all 4 legs identically — they all pivot on this exact point.",
+            "Clamp before drilling and deburr each hole so the bolts seat cleanly.",
           ],
         },
         {
@@ -809,6 +876,24 @@
             <section aria-labelledby="diagram-heading">
               <SectionHeader id="diagram-heading" icon={Icon.Blueprint} title="Engineering Diagrams" subtitle="Scaled schematic — front, side and folded views." />
               <Diagrams calc={calc} />
+            </section>
+
+            {/* ---- PIVOT DRILL GUIDE ---- */}
+            <section aria-labelledby="drill-heading">
+              <SectionHeader id="drill-heading" icon={Icon.Pivot} title="Pivot Hole — Where to Drill" subtitle={`The 8 mm pivot hole goes at the exact midpoint of each leg, ${calc.pivotDistance} mm down from the top.`} />
+              <PivotDrillGuide calc={calc} />
+              <div className="print-card mt-4 flex flex-col gap-4 rounded-2xl border border-cyan-500/30 bg-cyan-500/5 p-5 sm:flex-row sm:items-center">
+                <span className="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-cyan-500/15 text-cyan-300 ring-1 ring-cyan-500/30">
+                  <Icon.Pivot className="w-5 h-5" />
+                </span>
+                <p className="text-sm text-zinc-300 print-muted">
+                  Measure from the <strong className="text-zinc-100 print-text">top</strong> end of every leg, then drill an <strong className="text-zinc-100 print-text">8 mm</strong> hole at:
+                </p>
+                <div className="ml-auto text-center">
+                  <div className="text-4xl font-bold text-cyan-400 print-accent">{calc.pivotDistance}<span className="text-lg"> mm</span></div>
+                  <div className="text-xs text-zinc-400 print-muted">from the top — the midpoint</div>
+                </div>
+              </div>
             </section>
 
             {/* ---- CUTTING LIST ---- */}
